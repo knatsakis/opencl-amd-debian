@@ -50,13 +50,6 @@ download_pkgbuild() {
     # download current opencl-amd pkgbuild from aur
     wget -q "$pkgbuild_src" -O "$pkgbuild"
 
-    cat "$pkgbuild"
-    read -p "Proceed to source this pkgbuild? y/N" -n1 -r
-    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-        echo
-        echo Aborted
-        exit 2
-    fi
     # shellcheck source=./build/opencl-amd.pkgbuild
     source "$pkgbuild"
     
