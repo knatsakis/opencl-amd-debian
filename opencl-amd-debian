@@ -36,12 +36,13 @@ check_builddeps() {
         fi
     done
     if ! docker image inspect "$buildimage" &>/dev/null; then
-        echo ERROR: Missing docker image: "$buildimage"
-        echo
-        echo Build the required image with:
+        echo Building docker image with:
         echo
         echo docker build -t "$buildimage" .
-        exit 1
+
+        cd "$(dirname "$(realpath "$0")")"
+        docker build -t "$buildimage" .
+        cd -
     fi
 }
 
