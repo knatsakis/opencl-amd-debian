@@ -92,7 +92,7 @@ prepare_source() {
 
 package_deb() {
     # create deb package with fpm
-    docker run --user="$(id -u)" --rm --mount type=bind,source="$buildroot",target=/app -it \
+    docker run --user="$(id -u)" --rm --mount type=bind,source="$buildroot",target=/app -t \
         "$buildimage" \
         --log ERROR \
         -t deb -s dir -C "$(basename "$pkgdir")" -f \
